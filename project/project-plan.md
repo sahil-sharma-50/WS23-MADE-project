@@ -2,34 +2,42 @@
 
 ## Title
 <!-- Give your project a short title. -->
-Awesome MADE project.
+Weather's Impact on Road Safety in Berlin (2019)
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Does writing an example question help students write better project plans?
+This project digs into how the weather—rain, snow, and extreme temperatures—affects road safety. It's looking at accident data from Berlin in 2019 to see how these weather conditions impact the number of accidents that happen.
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
-
+This project aims to figure out how weather influences road safety, which is super important for creating better safety rules. It's checking out how different weather conditions link to the number of accidents. Plus, the goal is to make people more aware of the risks when driving in certain weather, to cut down on accidents, and to make the roads safer for everyone.
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
-
-### Datasource1: ExampleSource
-* Metadata URL: https://mobilithek.info/offers/-6901989592576801458
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
+### Datasource2: Road traffic accidents by accident location in Berlin 2019 
+* Metadata URL: https://data.europa.eu/en
+* Data URL: https://www.statistik-berlin-brandenburg.de/opendata/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2019_Datensatz.csv
 * Data Type: CSV
+<br>
+Road traffic accidents by accident location with street name, GPS coordinates, and LOR planning room in Berlin 2019; Accident month, weekday, hour; Type and category of accident
 
-Short description of the DataSource.
+### Datasource1: Weather Dataset
+* Metadata URL: https://mobilithek.info/offers/-6901989592576801458](https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html
+* Data URL: https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly/precipitation/
+* Data Type: CSV
+<br>
+Daily, 10-minute intervals of precipitation at weather stations throughout Germany.
 
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-
-1. Example Issue [#1][i1]
-2. ...
+1. Collect and refine the dataset related to traffic accidents and weather conditions.
+2. Establish automated data pipelines for effective data processing.
+3. Implement automated testing mechanisms for the pipeline.
+4. Conduct exploratory data analysis.
+5. Leverage GitHub Actions for continuous integration.
+6. Visualize the data, derive conclusions, and compile a final report.
 
 [i1]: https://github.com/jvalue/made-template/issues/1

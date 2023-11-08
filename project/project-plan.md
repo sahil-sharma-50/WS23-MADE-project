@@ -33,11 +33,16 @@ Daily, 10-minute intervals of precipitation at weather stations throughout Germa
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-1. Collect and refine the dataset related to traffic accidents and weather conditions. [1][i1]
-2. Establish automated data pipelines for effective data processing. [2][i2]
-3. Implement automated testing mechanisms for the pipeline. [3][i3]
-4. Conduct exploratory data analysis. [4][i4]
-5. Leverage GitHub Actions for continuous integration. [5][i5]
-6. Visualize the data, derive conclusions, and compile a final report. [5][i6]
+1. Collect and refine the dataset related to traffic accidents and weather conditions. [#1][i1]
+2. Establish automated data pipelines for effective data processing. [#2][i2]
+3. Implement automated testing mechanisms for the pipeline. [#3][i3]
+4. Conduct exploratory data analysis. [#4][i4]
+5. Leverage GitHub Actions for continuous integration. [#5][i5]
+6. Visualize the data, derive conclusions, and compile a final report. [#5][i6]
 
 [i1]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/1
+[i2]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/2
+[i3]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/3
+[i4]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/4
+[i5]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/5
+[i6]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/6

@@ -33,11 +33,11 @@ Daily, 10-minute intervals of precipitation at weather stations throughout Germa
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-1. Collect and refine the dataset related to traffic accidents and weather conditions. #1
-2. Establish automated data pipelines for effective data processing. #2
-3. Implement automated testing mechanisms for the pipeline. #3
-4. Conduct exploratory data analysis. #4
-5. Leverage GitHub Actions for continuous integration. #4
-6. Visualize the data, derive conclusions, and compile a final report. #5
+1. Collect and refine the dataset related to traffic accidents and weather conditions. [1]
+2. Establish automated data pipelines for effective data processing. [2]
+3. Implement automated testing mechanisms for the pipeline. [3]
+4. Conduct exploratory data analysis. [4]
+5. Leverage GitHub Actions for continuous integration. [5]
+6. Visualize the data, derive conclusions, and compile a final report. [5]
 
 [i1]: https://github.com/jvalue/made-template/issues/1

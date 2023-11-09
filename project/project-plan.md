@@ -33,7 +33,7 @@ Daily, 10-minute intervals of precipitation at weather stations throughout Germa
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-1. Collect and refine the dataset related to traffic accidents and weather conditions. [#1][i1]
+1. Collect and refine the two datasets. [#1][i1]
 2. Establish automated data pipelines for effective data processing. [#2][i2]
 3. Implement automated testing mechanisms for the pipeline. [#3][i3]
 4. Conduct exploratory data analysis. [#4][i4]

@@ -21,7 +21,7 @@ column_DataTypes = {
     "column_10": Float(),
     "column_11": Text(),
     "column_12": Text(),
-    "geo_punkt": Float()
+    "geo_punkt": Text()
 }
 
 #Connection to the Database:

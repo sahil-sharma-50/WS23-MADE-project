@@ -1,5 +1,10 @@
+# Task: Import a CSV file from a URL into a SQLite database
+# Editor: Sahil Sharma
+# Date: 13.11.2023
+
+#Importing necessary libraries:
 import pandas as pd
-from sqlalchemy import create_engine, Integer, Float, Text, REAL
+from sqlalchemy import create_engine, Integer, Float, Text
 
 #URL of the CSV File:
 url = "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv"
@@ -21,7 +26,7 @@ column_DataTypes = {
     "column_10": Float(),
     "column_11": Text(),
     "column_12": Text(),
-    "geo_punkt": REAL
+    "geo_punkt": Text()
 }
 
 #Connection to the Database:

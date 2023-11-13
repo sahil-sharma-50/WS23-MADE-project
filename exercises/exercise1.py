@@ -1,6 +1,6 @@
 # Task: Import a CSV file from a URL into a SQLite database
 # Editor: Sahil Sharma
-# Date: 13.11.2023
+# Date: November 13, 2023
 
 #Importing necessary libraries:
 import pandas as pd

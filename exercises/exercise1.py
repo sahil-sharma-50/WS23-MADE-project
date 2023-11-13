@@ -1,5 +1,5 @@
 import pandas as pd
-from sqlalchemy import create_engine, Integer, Float, Text
+from sqlalchemy import create_engine, Integer, Float, Text, REAL
 
 #URL of the CSV File:
 url = "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv"
@@ -21,7 +21,7 @@ column_DataTypes = {
     "column_10": Float(),
     "column_11": Text(),
     "column_12": Text(),
-    "geo_punkt": Text()
+    "geo_punkt": REAL
 }
 
 #Connection to the Database:

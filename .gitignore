@@ -3,3 +3,4 @@
 !/data/.gitkeep
 /exercises/*.txt
 /exercises/venv/
+/project/*.sh

@@ -1,0 +1,80 @@
+// Task: Writing CSV data into a SQLite table "trainstops.sqlite"
+// Author: Sahil Sharma
+// Date: November 18, 2023
+
+// Setting Verkehr constraint:
+valuetype Verkehr oftype text{
+    constraints: [VerkehrValues];
+}
+constraint VerkehrValues oftype AllowlistConstraint{
+    allowlist: ["FV", "RV", "nur DPN"];
+}
+
+// Setting Laenge and Breite constraint:
+valuetype Laenge oftype decimal{
+    constraints: [GeographicCoordinates];
+}
+valuetype Breite oftype decimal{
+    constraints: [GeographicCoordinates];
+}
+constraint GeographicCoordinates oftype RangeConstraint{
+    lowerBound: -90;
+    upperBound: 90;
+}
+
+// Setting IFOPT constraint:
+valuetype IFOPT oftype text{
+    constraints: [IFOPT_Constraint];
+}
+constraint IFOPT_Constraint oftype RegexConstraint{
+    regex: ^.{2}:\d*:\d*(?::\d*)?$;
+}
+
+// Setting NotEmptyText constraint:
+valuetype NotEmptyText oftype text{
+    constraints: [NotEmpty];
+}
+constraint NotEmpty oftype LengthConstraint{
+    minLength: 1;
+}
+
+// Start of Trainstops Pipeline:
+pipeline TrainstopsPipeline{
+    // Extracting CSV from URL:
+    block TrainstopsFileExtractor oftype HttpExtractor{
+        url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV";
+    }
+    block TrainstopsTextFileInterpreter oftype TextFileInterpreter{}
+    block TrainstopsCSVInterpreter oftype CSVInterpreter{
+        delimiter: ';';
+    }
+    // Deleting Status column:
+    block TrainstopsColumnDeleter oftype ColumnDeleter{
+        delete: [column J];
+    }
+    block TrainstopsTableInterpreter oftype TableInterpreter{
+        header: true;
+        columns: [
+            "EVA_NR" oftype integer,
+            "DS100" oftype NotEmptyText,
+            "IFOPT"	oftype IFOPT,
+            "NAME" oftype NotEmptyText,
+            "Verkehr" oftype Verkehr,
+            "Laenge" oftype Laenge,
+            "Breite" oftype Breite,
+            "Betreiber_Name" oftype NotEmptyText,
+            "Betreiber_Nr" oftype integer
+        ];
+    }
+    // Loading data into trainstops.sqlite:
+    block TrainstopsLoader oftype SQLiteLoader{
+        table: "trainstops";
+        file: "./trainstops.sqlite";
+    }
+    TrainstopsFileExtractor
+        -> TrainstopsTextFileInterpreter
+        -> TrainstopsCSVInterpreter
+        -> TrainstopsColumnDeleter
+        -> TrainstopsTableInterpreter
+        -> TrainstopsLoader
+}

@@ -1,92 +1,92 @@
-valuetype Verkehr oftype text {
-	constraints: [
-		VerkehrValues,
-	];
-}
-
-valuetype Laenge oftype decimal {
-	constraints: [
-		GeographicScale,
-	];
-}
-
-valuetype Breite oftype decimal {
-	constraints: [
-		GeographicScale,
-	];
-}
-
-valuetype IFOPT oftype text {
-	constraints: [
-		IFOPT_Format,
-	];
-}
-
-valuetype NoEmptyText oftype text {
-	constraints: [
-		NoEmpty,
-	];
-}
-
-constraint VerkehrValues oftype AllowlistConstraint {
-  allowlist: ["FV", "RV", "nur DPN"];
-}
-
-constraint GeographicScale oftype RangeConstraint {
-  lowerBound: -90;
-  upperBound: 90;      
-}
-
-constraint IFOPT_Format oftype RegexConstraint {
-  regex: /[a-z]{2}:\d+:\d+(:\d+)?/;
-}
-
-constraint NoEmpty oftype DenylistConstraint {
-  denylist: [""];
+valuetype notEmptyText oftype text {
+    constraints: [
+        notEmpty
+    ];
 }
 
 
-pipeline TrainstopsPipeline {
+constraint notEmpty oftype LengthConstraint {
+    minLength: 1;
+}
 
-    block TrainstopsFileExtractor oftype HttpExtractor {
+valuetype verkehrValue oftype text {
+    constraints: [
+        verkehrAllowlist,
+    ];
+}
+
+constraint verkehrAllowlist oftype AllowlistConstraint {
+    allowlist: [
+        "FV",
+        "RV",
+        "nur DPN",
+    ];
+}
+
+valuetype coordinateValue oftype decimal {
+    constraints: [
+        coordinateRangeConstraint,
+    ];
+}
+
+
+constraint coordinateRangeConstraint oftype RangeConstraint {
+    lowerBound: -90;
+    upperBound: 90;
+}
+
+valuetype IFOPTValue oftype text {
+    constraints: [
+        IFOPTConstraint,
+    ];
+}
+
+constraint IFOPTConstraint oftype RegexConstraint {
+    regex: /^[a-zA-Z]{2}:\d+:\d+(:\d+)?$/;
+}
+
+pipeline trainstopsPipeline {
+
+    block extractor oftype HttpExtractor {
         url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV";
     }
 
-    block TrainstopsTextFileInterpreter oftype TextFileInterpreter {}
+    block textFileInterpreter oftype TextFileInterpreter {
 
-    block TrainstopsCSVInterpreter oftype CSVInterpreter {  
-    delimiter: ";";
     }
 
-    block TrainstopsColumnDeleter oftype ColumnDeleter {
+    block CSVInterpreter oftype CSVInterpreter {
+        delimiter: ";";
+    }
+
+    block columnDeleter oftype ColumnDeleter {
         delete: [column J];
     }
 
-    block TrainstopsTableInterpreter oftype TableInterpreter {
+    block tableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
-        "EVA_NR" oftype integer,
-        "DS100" oftype NoEmptyText,
-        "IFOPT" oftype IFOPT,
-        "NAME" oftype NoEmptyText,
-        "Verkehr" oftype Verkehr,
-        "Laenge" oftype Laenge,
-        "Breite" oftype Breite,
-        "Betreiber_Name" oftype NoEmptyText,
-        "Betreiber_Nr" oftype integer,
-        "Status" oftype NoEmptyText,
+            "EVA_NR" oftype integer,
+            "DS100" oftype notEmptyText,
+            "IFOPT" oftype IFOPTValue,
+            "NAME" oftype notEmptyText,
+            "Verkehr" oftype verkehrValue,
+            "Laenge" oftype coordinateValue,
+            "Breite" oftype coordinateValue,
+            "Betreiber_Name" oftype notEmptyText,
+            "Betreiber_Nr" oftype integer,
         ];
     }
-    block TrainstopsLoader oftype SQLiteLoader {
-        table: "Trainstops";
+
+    block loader oftype SQLiteLoader {
+        table: "trainstops";
         file: "./trainstops.sqlite";
     }
 
-
-    TrainstopsFileExtractor
-        -> TrainstopsTextFileInterpreter
-        -> TrainstopsCSVInterpreter
-        -> TrainstopsColumnDeleter
-        -> TrainstopsTableInterpreter
-        -> TrainstopsLoader;
+    extractor
+        -> textFileInterpreter
+        -> CSVInterpreter
+        -> columnDeleter
+        -> tableInterpreter
+        -> loader;
 }

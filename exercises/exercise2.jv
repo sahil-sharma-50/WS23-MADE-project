@@ -27,7 +27,7 @@ valuetype IFOPT oftype text{
     constraints: [IFOPT_Constraint];
 }
 constraint IFOPT_Constraint oftype RegexConstraint{
-    regex: /[a-z]{2}:\d+:\d+(:\d+)?$/;
+    regex: /^[a-z]{2}:\d+:\d+(:\d+)?$/;
 }
 
 // Setting NotEmptyText constraint:
@@ -56,14 +56,14 @@ pipeline TrainstopsPipeline{
         header: true;
         columns: [
             "EVA_NR" oftype integer,
-            "DS100" oftype text,
+            "DS100" oftype NotEmptyText,
             "IFOPT"	oftype IFOPT,
-            "NAME" oftype text,
+            "NAME" oftype NotEmptyText,
             "Verkehr" oftype Verkehr,
             "Laenge" oftype Laenge,
             "Breite" oftype Breite,
-            "Betreiber_Name" oftype text,
-            "Betreiber_Nr" oftype integer
+            "Betreiber_Name" oftype NotEmptyText,
+            "Betreiber_Nr" oftype integer,
         ];
     }
     // Loading data into trainstops.sqlite:

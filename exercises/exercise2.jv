@@ -34,8 +34,8 @@ constraint IFOPT_Constraint oftype RegexConstraint{
 valuetype NotEmptyText oftype text{
     constraints: [NotEmpty];
 }
-constraint NotEmpty oftype LengthConstraint{
-    minLength: 1;
+constraint NotEmpty oftype DenylistConstraint{
+    denylist: [""];
 }
 
 // Start of Trainstops Pipeline:
@@ -63,14 +63,13 @@ pipeline TrainstopsPipeline{
             "Laenge" oftype Laenge,
             "Breite" oftype Breite,
             "Betreiber_Name" oftype NotEmptyText,
-            "Betreiber_Nr" oftype integer,
-            "Status" oftype NotEmptyText
+            "Betreiber_Nr" oftype integer
         ];
     }
     // Loading data into trainstops.sqlite:
     block TrainstopsLoader oftype SQLiteLoader{
         table: "trainstops";
-        file: "./trainstops.sqlite";
+        file: "trainstops.sqlite";
     }
     TrainstopsFileExtractor
         -> TrainstopsTextFileInterpreter

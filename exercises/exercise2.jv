@@ -27,15 +27,15 @@ valuetype IFOPT oftype text{
     constraints: [IFOPT_Constraint];
 }
 constraint IFOPT_Constraint oftype RegexConstraint{
-    regex: /^.{2}:\d*:\d*(?::\d*)?$/;
+    regex: /[a-z]{2}:\d+:\d+(:\d+)?/;
 }
 
 // Setting NotEmptyText constraint:
 valuetype NotEmptyText oftype text{
     constraints: [NotEmpty];
 }
-constraint NotEmpty oftype DenylistConstraint{
-    denylist: [""];
+constraint NotEmpty oftype LengthConstraint{
+    minLength: 1;
 }
 
 // Start of Trainstops Pipeline:

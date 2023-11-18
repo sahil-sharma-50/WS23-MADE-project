@@ -27,7 +27,7 @@ valuetype IFOPT oftype text{
     constraints: [IFOPT_Constraint];
 }
 constraint IFOPT_Constraint oftype RegexConstraint{
-    regex: /[a-z]{2}:\d+:\d+(:\d+)?/;
+    regex: /^[a-zA-Z]{2}:\d+:\d+(:\d+)?$/;
 }
 
 // Setting NotEmptyText constraint:
@@ -69,7 +69,7 @@ pipeline TrainstopsPipeline{
     // Loading data into trainstops.sqlite:
     block TrainstopsLoader oftype SQLiteLoader{
         table: "trainstops";
-        file: "trainstops.sqlite";
+        file: "./trainstops.sqlite";
     }
     TrainstopsFileExtractor
         -> TrainstopsTextFileInterpreter

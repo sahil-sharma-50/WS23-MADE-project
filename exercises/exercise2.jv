@@ -53,7 +53,7 @@ pipeline TrainstopsPipeline{
         delete: [column J];
     }
     block TrainstopsTableInterpreter oftype TableInterpreter{
-        header: false;
+        header: true;
         columns: [
             "EVA_NR" oftype integer,
             "DS100" oftype NotEmptyText,
@@ -63,7 +63,7 @@ pipeline TrainstopsPipeline{
             "Laenge" oftype Laenge,
             "Breite" oftype Breite,
             "Betreiber_Name" oftype NotEmptyText,
-            "Betreiber_Nr" oftype integer,
+            "Betreiber_Nr" oftype integer
         ];
     }
     // Loading data into trainstops.sqlite:

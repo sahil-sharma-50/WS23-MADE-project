@@ -27,7 +27,7 @@ valuetype IFOPT oftype text{
     constraints: [IFOPT_Constraint];
 }
 constraint IFOPT_Constraint oftype RegexConstraint{
-    regex: ^.{2}:\d*:\d*(?::\d*)?$;
+    regex: /^.{2}:\d*:\d*(?::\d*)?$/;
 }
 
 // Setting NotEmptyText constraint:
@@ -76,5 +76,5 @@ pipeline TrainstopsPipeline{
         -> TrainstopsCSVInterpreter
         -> TrainstopsColumnDeleter
         -> TrainstopsTableInterpreter
-        -> TrainstopsLoader
+        -> TrainstopsLoader;
 }

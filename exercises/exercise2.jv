@@ -56,13 +56,13 @@ pipeline TrainstopsPipeline{
         header: true;
         columns: [
             "EVA_NR" oftype integer,
-            "DS100" oftype NotEmptyText,
+            "DS100" oftype text,
             "IFOPT"	oftype IFOPT,
-            "NAME" oftype NotEmptyText,
+            "NAME" oftype text,
             "Verkehr" oftype Verkehr,
             "Laenge" oftype Laenge,
             "Breite" oftype Breite,
-            "Betreiber_Name" oftype NotEmptyText,
+            "Betreiber_Name" oftype text,
             "Betreiber_Nr" oftype integer
         ];
     }

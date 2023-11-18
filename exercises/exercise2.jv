@@ -69,7 +69,7 @@ pipeline TrainstopsPipeline{
     // Loading data into trainstops.sqlite:
     block TrainstopsLoader oftype SQLiteLoader{
         table: "trainstops";
-        file: "./trainstops.sqlite";
+        file: "trainstops.sqlite";
     }
     TrainstopsFileExtractor
         -> TrainstopsTextFileInterpreter

@@ -63,7 +63,8 @@ pipeline TrainstopsPipeline{
             "Laenge" oftype Laenge,
             "Breite" oftype Breite,
             "Betreiber_Name" oftype NotEmptyText,
-            "Betreiber_Nr" oftype integer
+            "Betreiber_Nr" oftype integer,
+            "Status" oftype NotEmptyText
         ];
     }
     // Loading data into trainstops.sqlite:

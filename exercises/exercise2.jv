@@ -28,7 +28,8 @@ valuetype IFOPT oftype text{
 }
 constraint IFOPT_Constraint oftype RegexConstraint{
     // regex: /^[a-z]{2}:\d+:\d+(:\d+)?$/;
-    regex: /^[a-zA-Z0-9]{2}:\d+:\d+(:\d+)?$/;
+    // regex: /^[a-zA-Z0-9]{2}:\d+:\d+(:\d+)?$/;
+    regex: /^.{2}:\d+:\d+(:\d+)?$/;
 }
 
 // Setting NotEmptyText constraint:

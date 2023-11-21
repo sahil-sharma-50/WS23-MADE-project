@@ -19,7 +19,9 @@ valuetype Breite oftype decimal{
 }
 constraint GeographicCoordinates oftype RangeConstraint{
     lowerBound: -90;
+    lowerBoundInclusive: true;
     upperBound: 90;
+    upperBoundInclusive: true;
 }
 
 // Setting IFOPT constraint:

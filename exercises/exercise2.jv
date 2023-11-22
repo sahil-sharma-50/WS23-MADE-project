@@ -1,6 +1,6 @@
-// Task: Writing CSV data into an SQLite table "trainstops.sqlite"
+// Task: Writing CSV data from URL to an SQLite table "trainstops.sqlite"
 // Author: Sahil Sharma
-// Date: November 21, 2023
+// Date: November 22, 2023
 
 // Setting Verkehr constraint:
 valuetype Verkehr oftype text{

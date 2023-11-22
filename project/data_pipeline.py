@@ -27,16 +27,13 @@ def main():
     # Load bike traffic data
     bike_traffic = load_data("bike_traffic/rad_15min.csv", date_column_format='%Y.%m.%d')
 
-    # Preprocess weather data for a specific year (e.g., 2017)
+    # Preprocess weather data for a specific year
     munich_2017 = preprocess_weather(munich_weather, year=2017)
 
     # Preprocess bike traffic data
     preprocessed_bike_traffic = preprocess_bike_traffic(bike_traffic)
 
-    # Filter bike traffic data for dates before '2017-05-31'
     bike_traffic_filtered = preprocessed_bike_traffic[preprocessed_bike_traffic['Date'] < '2017-05-31']
-
-    # Perform further processing or analysis as needed
 
 if __name__ == "__main__":
     main()

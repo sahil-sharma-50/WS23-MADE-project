@@ -1,4 +1,5 @@
 import pandas as pd
+import sqlite3
 
 def load_data(file_path, date_column_format='%d.%m.%Y'):
     data = pd.read_csv(file_path, sep=';')
@@ -25,6 +26,13 @@ def main():
     munich_2017 = preprocess_weather(munich_weather, year=2017)
     preprocessed_bike_traffic = preprocess_bike_traffic(bike_traffic)
     bike_traffic_filtered = preprocessed_bike_traffic[preprocessed_bike_traffic['Date'] < '2017-05-31']
+
+    final_data = pd.merge(munich_2017, bike_traffic_filtered, on='Date')
+    conn = sqlite3.connect('merged_data.db')
+    final_data.to_sql('final_data', conn, index=False, if_exists='replace')
+
+    # Close the connection
+    conn.close()
 
 if __name__ == "__main__":
     main()

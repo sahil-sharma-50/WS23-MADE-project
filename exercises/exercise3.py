@@ -8,7 +8,9 @@ from sqlalchemy import create_engine, String, Integer
 
 url = "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv"
 
-data = pd.read_csv(url, sep=";", skiprows=7, skipfooter=4, encoding="ISO-8859-1", engine='python')
+data = pd.read_csv(
+    url, sep=";", skiprows=7, skipfooter=4, encoding="ISO-8859-1", engine="python"
+)
 data = data.iloc[:, [0, 1, 2, 12, 22, 32, 42, 52, 62, 72]]
 
 # Rename columns names:
@@ -27,7 +29,16 @@ data = data.rename(
     }
 )
 
-# Definig Column Data Types
+
+# Validate data:
+data["CIN"] = data["CIN"].astype(str).str.zfill(5)
+numeric_columns = ["petrol", "diesel", "gas", "electro", "hybrid", "plugInHybrid", "others",]
+for col in numeric_columns:
+    data[col] = pd.to_numeric(data[col], errors="coerce")
+    data = data[data[col] > 0]
+
+
+# Definig Column Data Types:
 column_DataTypes = {
     "date": String,
     "CIN": String,
@@ -48,5 +59,5 @@ engine = create_engine("sqlite:///cars.sqlite")
 # Store the data in airports table:
 data.to_sql("cars", engine, index=False, dtype=column_DataTypes, if_exists="replace")
 
-# Connection close
+# Connection close:
 engine.dispose()

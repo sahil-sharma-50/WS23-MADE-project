@@ -4,3 +4,5 @@
 /exercises/*.txt
 /exercises/venv/
 /project/pipeline.sh
+*.sqlite
+/exercises/*.sqlite

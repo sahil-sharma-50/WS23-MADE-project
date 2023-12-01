@@ -11,7 +11,7 @@ url = "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00
 data = pd.read_csv(url, sep=";", skiprows=7, skipfooter=4, encoding="ISO-8859-1", engine='python')
 data = data.iloc[:, [0, 1, 2, 12, 22, 32, 42, 52, 62, 72]]
 
-# Rename columns names
+# Rename columns names:
 data = data.rename(
     columns={
         data.columns[0]: "date",

@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, String, Integer
 url = "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv"
 
 data = pd.read_csv(
-    url, sep=";", skiprows=7, skipfooter=4, encoding="ISO-8859-1", engine="python"
+    url, sep=";", skiprows=6, skipfooter=4, encoding="ISO-8859-1", engine="python"
 )
 data = data.iloc[:, [0, 1, 2, 12, 22, 32, 42, 52, 62, 72]]
 

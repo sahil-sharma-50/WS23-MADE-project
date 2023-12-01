@@ -4,4 +4,3 @@
 /exercises/*.txt
 /exercises/venv/
 *.sqlite
-/exercises/*.sqlite

@@ -3,4 +3,3 @@
 !/data/.gitkeep
 /exercises/*.txt
 /exercises/venv/
-*.sqlite

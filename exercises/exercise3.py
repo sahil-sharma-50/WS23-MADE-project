@@ -27,6 +27,7 @@ data = data.rename(
     }
 )
 
+# Definig Column Data Types
 column_DataTypes = {
     "date": String,
     "CIN": String,

@@ -17,7 +17,7 @@ This project aims to figure out how weather influences road safety, which is sup
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 ### Datasource1: Road traffic accidents by accident location in Berlin 2019 
-* Metadata URL: https://data.europa.eu/en
+* Metadata URL: [https://data.europa.eu/en](https://data.europa.eu/data/datasets/418d5d6f-04c6-4a45-84da-b85d21c9d47c/quality?locale=en)
 * Data URL: https://www.statistik-berlin-brandenburg.de/opendata/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2019_Datensatz.csv
 * Data Type: CSV
 <br>

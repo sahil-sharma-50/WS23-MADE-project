@@ -2,7 +2,7 @@
 
 ## Title
 <!-- Give your project a short title. -->
-Weather's Impact on Road Safety in Berlin (2019)
+An Analytical Study on the Influence of Weather Conditions on Road Safety in Berlin.
 
 ## Main Question
 

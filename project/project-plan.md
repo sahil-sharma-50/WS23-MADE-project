@@ -35,7 +35,7 @@ Average monthly precipitation, Air Pressure, and Sunshine duration at weather st
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 1. [x] Collect and refine the two datasets. [#1][i1]
 2. [x] Establish automated data pipelines. [#2][i2]
-3. [ ] Implement automated testing for the pipeline. [#3][i3]
+3. [x] Implement automated testing for the pipeline. [#3][i3]
 4. [ ] Leverage GitHub Actions for continuous integration. [#4][i4]
 5. [ ] Conduct data analysis. [#5][i5]
 7. [ ] Visualize the data, derive conclusions, and compile a final report. [#6][i6]

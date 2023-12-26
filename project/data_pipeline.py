@@ -4,7 +4,7 @@ import os
 
 
 def load_accident_df(accident):
-    accident = pd.read_csv(accident, delimiter=";", encoding='ISO-8859-1')
+    accident = pd.read_csv(accident, delimiter=';', encoding='ISO-8859-1')
     return accident
 
 
@@ -39,11 +39,13 @@ def load_weather_df(weather):
     return weather
 
 
-def preprocess_accidents(accidents_raw_df, drop_columns, column_names, months_mapping, road_conditions_mapping):
+def preprocess_accidents(accidents_raw_df, drop_columns, column_names, months_mapping, road_conditions_mapping, condition_value):
     accidents_df = accidents_raw_df.drop(columns=drop_columns)
     accidents_df.rename(columns=column_names, inplace=True)
     accidents_df['month'] = accidents_df['month'].map(months_mapping)
+    accidents_df[['month', 'road condition']] = accidents_df[['month','road condition']].astype(str)
     accidents_df['road condition'] = accidents_df['road condition'].replace(road_conditions_mapping)
+    accidents_df.drop(index=accidents_df[accidents_df['road condition'] == condition_value].index, inplace=True)
     return accidents_df
 
 
@@ -66,7 +68,7 @@ def main():
     accidents = load_accident_df('../data/accident_data.csv')
     weather_df = load_weather_df('https://opendata.dwd.de/climate_environment/CDC/regional_averages_DE/monthly')
     drop_columns = ['LAND', 'LOR', 'UJAHR', 'XGCSWGS84', 'YGCSWGS84', 'BEZ', 'OBJECTID', 'STRASSE',
-                    'USTUNDE', 'UWOCHENTAG', 'UKATEGORIE', 'UART', 'UTYP1', 'ULICHTVERH', 'IstSonstige']
+                    'USTUNDE', 'UWOCHENTAG', 'UKATEGORIE', 'UART', 'UTYP1', 'ULICHTVERH', 'IstSonstige','LINREFX','LINREFY']
     columns_rename = {
         'UMONAT': 'month',
         'IstRad': 'bicycle',
@@ -81,7 +83,7 @@ def main():
         7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
     }
     road_conditions_rename = {'0': 'dry', '1': 'wet', '2': 'icy'}
-    accidents_df = preprocess_accidents(accidents, drop_columns, columns_rename, months_rename, road_conditions_rename)
+    accidents_df = preprocess_accidents(accidents, drop_columns, columns_rename, months_rename, road_conditions_rename, 'Hellersdorfer Promenade')
     final_df = merge_data(accidents_df, weather_df)
     save_to_sqlite(final_df, 'final_data_table')
 

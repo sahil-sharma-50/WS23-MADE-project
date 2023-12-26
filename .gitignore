@@ -1,7 +1,8 @@
 .DS_Store
-/data/*
+/data/*.sqlite
 !/data/.gitkeep
 /exercises/*.txt
 /exercises/venv/
 *.sqlite
 /exercises/*.sqlite
+/project/__pycache__

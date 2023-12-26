@@ -37,7 +37,7 @@ Average monthly precipitation, Air Pressure, and Sunshine duration at weather st
 2. [x] Establish automated data pipelines. [#2][i2]
 3. [x] Implement automated testing for the pipeline. [#3][i3]
 4. [x] Leverage GitHub Actions for continuous integration. [#4][i4]
-5. [ ] Conduct data analysis. [#5][i5]
+5. [x] Conduct data analysis. [#5][i5]
 7. [ ] Visualize the data, derive conclusions, and compile a final report. [#6][i6]
 
 [i1]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/1

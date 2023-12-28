@@ -7,7 +7,7 @@ Influence of weather on vehicles involved in accidents.
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-Analyze different weather conditions with their impact on different types of vehicles involved in road accidents.
+Analyze different weather conditions and their impact on different types of vehicles involved in road accidents.
 
 ## Description
 

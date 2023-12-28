@@ -1,12 +1,26 @@
-# Methods of Advanced Data Engineering Template Project
+# Methods of Advanced Data Engineering Project
 
-This template project provides some structure for your open data project in the MADE module at FAU.
-This repository contains (a) a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
+This project provides some structure for my open data project in the MADE module at FAU.
+This repository contains (a) a data science project that was developed by me over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
 Before you begin, make sure you have [Python](https://www.python.org/) and [Jayvee](https://github.com/jvalue/jayvee) installed. We will work with [Jupyter notebooks](https://jupyter.org/). The easiest way to do so is to set up [VSCode](https://code.visualstudio.com/) with the [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
 
 
-## Project Work
-Your data engineering project will run alongside lectures during the semester. We will ask you to regularly submit project work as milestones so you can reasonably pace your work. All project work submissions **must** be placed in the `project` folder.
+## Project Work: Analyze different weather conditions and their impact on different types of vehicles involved in road accidents.
+This project aims to figure out how weather influences road safety, especially if the weather conditions affect the types of vehicles involved in an accident, which is super important for creating better safety rules. It checks out how different weather conditions relate to the number of accidents. It looks at accident data from Berlin to see how these weather conditions impact the number of accidents.<br><br>
+This project aims to investigate the following aspects:
+<ol>
+	<li>Which road condition has the most impact on road accidents?</li>
+	<li>Which type of vehicle is most likely to be involved in an accident?</li>
+	<li>How do different weather conditions impact the types of vehicles involved in accidents?</li>
+	<li>Is there any trend in vehicle accidents over the period of a year?</li>
+</ol>
+
+All project work is **present** in the `project` folder.
+
+### Insights of the Project:
+1. **Comprehensive Analysis Report: [report.ipynb](https://github.com/sahil-sharma-50/WS23-MADE-project/blob/main/project/report.ipynb)**
+2. **Presentation Slides: [slides.pdf](https://www.python.org/)**
+3. **Presentation Video: [presentation-video.mp4](https://www.python.org/)**
 
 ### Exporting a Jupyter Notebook
 Jupyter Notebooks can be exported using `nbconvert` (`pip install nbconvert`). For example, to export the example notebook to html: `jupyter nbconvert --to html examples/final-report-example.ipynb --embed-images --output final-report.html`

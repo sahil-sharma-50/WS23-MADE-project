@@ -21,7 +21,8 @@ This project aims to figure out how weather influences road safety, especially i
 * Data URL: https://www.statistik-berlin-brandenburg.de/opendata/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2019_Datensatz.csv
 * Data Type: CSV
 <br>
-Road traffic accidents by accident location with street name, GPS coordinates, and LOR planning room in Berlin. This includes accident month, weekday, hour, type, and category of accident.
+Road traffic accidents by accident location with street name, GPS coordinates, and LOR planning room in Berlin. This includes accident month, weekday, hour, type, and category of accident.<br>
+Direct downloading the dataset was not possible, so I stored the dataset in <b>data\accident_data.csv</b>
 
 ### Datasource2: Weather Dataset
 * Metadata URL: https://mobilithek.info/offers/-6901989592576801458](https://www.dwd.de/EN/ourservices/cdc/cdc_ueberblick-klimadaten_en.html
@@ -38,7 +39,7 @@ Average monthly precipitation, Air Pressure, and Sunshine duration at weather st
 3. [x] Implement automated testing for the pipeline. [#3][i3]
 4. [x] Leverage GitHub Actions for continuous integration. [#4][i4]
 5. [x] Conduct data analysis. [#5][i5]
-7. [ ] Visualize the data, derive conclusions, and compile a final report. [#6][i6]
+7. [x] Visualize the data, derive conclusions, and compile a final report. [#6][i6]
 
 [i1]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/1
 [i2]: https://github.com/sahil-sharma-50/WS23-MADE-project/issues/2

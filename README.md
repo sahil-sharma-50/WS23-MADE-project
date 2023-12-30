@@ -19,7 +19,7 @@ All project work is **present** in the `project` folder.
 
 ### Insights of the Project:
 1. **Comprehensive Analysis Report: [report.ipynb](https://github.com/sahil-sharma-50/WS23-MADE-project/blob/main/project/report.ipynb)**
-2. **Presentation Slides: [slides.pdf](https://www.python.org/)**
+2. **Presentation Slides: [slides.pdf](https://github.com/sahil-sharma-50/WS23-MADE-project/blob/main/project/slides.pdf)**
 3. **Presentation Video: [presentation-video.mp4](https://www.python.org/)**
 
 ### Exporting a Jupyter Notebook

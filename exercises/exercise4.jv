@@ -1,0 +1,128 @@
+// Task: Writing CSV data from URL to an SQLite database "temperatures.sqlite"
+// Author: Sahil Sharma
+// Date: January 09, 2023
+
+
+// Change temperature from Celsius to Fahrenheit
+transform CelsiusToFahrenheit {
+  from tempCelsius oftype decimal;
+  to tempFahrenheit oftype decimal;
+  tempFahrenheit: (tempCelsius * 9/5) + 32;
+}
+
+
+// Validate data
+valuetype Month oftype integer {
+    constraints: [MonthRange];
+}
+constraint MonthRange oftype RangeConstraint {
+  lowerBound: 1;
+  lowerBoundInclusive: true;
+  upperBound: 12; 
+  upperBoundInclusive: true;     
+}
+
+valuetype Geraet oftype integer {
+    constraints: [GeraetValueOverZero,];
+}
+constraint GeraetValueOverZero oftype RangeConstraint {
+  lowerBound: 0;    
+}
+
+valuetype Temperatur oftype decimal {
+    constraints: [TemperatureAbsoluteZero];
+}
+constraint TemperatureAbsoluteZero oftype RangeConstraint {
+  lowerBound: -273.150;
+  lowerBoundInclusive: true;
+}
+
+//Main Pipeline
+pipeline Temperatures {
+    //Download and unzip data
+    block TemperaturesExtractor  oftype HttpExtractor {
+        url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip";
+        }
+
+    block TemperaturesZipInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+
+    block TemperaturesFilePicker oftype FilePicker {
+        path: "/data.csv";
+    }
+
+	block TemperaturesTextFileInterpreter oftype TextFileInterpreter {
+
+	}
+
+	block TemperaturesCSVInterpreter oftype CSVInterpreter {
+		delimiter: ';';
+	}
+
+    block TemperaturesDataSelector oftype CellRangeSelector {
+        select: range A1:K*;
+    }
+
+    //Rename column names
+    block TemperaturesHeaderWriter oftype CellWriter {
+        at: cell E1;
+        write: ["Temperatur"];
+    }
+
+    block BatteryTemperaturesHeaderWriter oftype CellWriter {
+        at: cell J1;
+        write: ["Batterietemperatur"];
+    }
+
+    // Delete columns
+    block TemperaturesColumnDeleter oftype ColumnDeleter {
+        delete: [column F, column G, column H, column I];
+    }
+
+	block TemperaturesTableInterpreter oftype TableInterpreter {
+		header: true;
+        columns: [
+			"Geraet" oftype Geraet,
+			"Hersteller" oftype text,
+			"Model" oftype text,
+			"Monat" oftype Month,
+			"Temperatur" oftype Temperatur,
+			"Batterietemperatur" oftype Temperatur,
+			"Geraet aktiv" oftype text
+		];
+	}
+
+    //Transform Celsius to Fahrenheit
+    block CelsiusToFahrenheitTransformer oftype TableTransformer {
+        inputColumns: ['Temperatur'];
+        outputColumn: 'Temperatur';
+        use: CelsiusToFahrenheit;
+    }
+
+    block CelsiusToFahrenheitBatteryTransformer oftype TableTransformer {
+        inputColumns: ['Batterietemperatur'];
+        outputColumn: 'Batterietemperatur';
+        use: CelsiusToFahrenheit;
+    }
+
+    // Writing in SQLite Database
+	block TemperaturesLoader oftype SQLiteLoader {
+		table: "temperatures";
+		file: "temperatures.sqlite";
+	}
+
+    TemperaturesExtractor
+        -> TemperaturesZipInterpreter
+        -> TemperaturesFilePicker
+        -> TemperaturesTextFileInterpreter
+        -> TemperaturesCSVInterpreter
+        -> TemperaturesDataSelector
+        -> TemperaturesHeaderWriter
+        -> BatteryTemperaturesHeaderWriter
+        -> TemperaturesColumnDeleter
+        -> TemperaturesTableInterpreter
+        -> CelsiusToFahrenheitTransformer
+        -> CelsiusToFahrenheitBatteryTransformer
+        -> TemperaturesLoader;
+}

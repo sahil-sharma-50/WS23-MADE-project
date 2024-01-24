@@ -2,7 +2,8 @@
 #  Author: Sahil Sharma
 #  Date: January 09, 2023
 
-import zipfile, urllib.request, pandas as pd, sqlalchemy
+import zipfile, urllib.request, sqlalchemy 
+import pandas as pd
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Float
 
 # Download and extract data
@@ -17,11 +18,11 @@ df = df[df["stop_lat"].between(-90, 90) & df["stop_lon"].between(-90, 90)]
 
 # Define datatypes
 df = df.astype({
-    'stop_id': Integer,
-    'stop_name': String,
-    'stop_lat': Float,
-    'stop_lon': Float,
-    'zone_id': Integer
+    'stop_id': 'int',
+    'stop_name': 'str',
+    'stop_lat': 'float',
+    'stop_lon': 'float',
+    'zone_id': 'int'
 })
 
 # Save to database
